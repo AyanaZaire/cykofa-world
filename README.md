@@ -1,4 +1,4 @@
-# Cykofa World CLI
+# Cykofa Narration CLI
 
 1. Fork and clone this project.
 2. Open your terminal and run `$ json-server --watch db.json` in the project directory to start the server.

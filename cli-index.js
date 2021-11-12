@@ -45,7 +45,7 @@ function viewEntry(id) {
       "Name:", entry.name + '\n' +
       "Year Born:", entry.born + '\n' +
       "Birthplace:", entry.birthplace + '\n' +
-      "Bio:", entry.words + '\n');
+      "Bio:", entry.data + '\n');
     console.log("Do you wish to add this entry to your Favorites? Please input yes or no below.");
     prompt.start();
     prompt.get(['input'], function (err, result) {
@@ -74,7 +74,7 @@ function favoriteIndex() {
           console.log('\n' +
             "Entry ID:", entry.id + '\n' +
             "Name:", entry.name + '\n' +
-            "Words:", entry.words + '\n');
+            "Words:", entry.data + '\n');
         })
       }
       removeFavorite(favorites)
@@ -123,7 +123,7 @@ function addFavorite(entry) {
   })
 }
 
-// IDEA: Generates a poem using the words's of your favorited entries
+// IDEA: Generates a poem using the data's of your favorited entries
 function splitFavoriteBios() {
   fetch("http://localhost:3000/favorites")
   .then(response => response.json())
@@ -137,7 +137,7 @@ function splitFavoriteBios() {
         favoritedEntries = allEntries.filter(entry => entry.id == favorites[i].entryId)
         favoritedEntries.forEach(entry => {
           console.log(entry.name, entry.id);
-          let splitBio = entry.words.split(".")
+          let splitBio = entry.data.split(".")
           // push each sentence into a single array
           for (let i = 0, len = splitBio.length; i < len ; i++) {
             singleArrayOfSentences.push(splitBio[i])
