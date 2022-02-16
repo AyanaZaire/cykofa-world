@@ -45,16 +45,16 @@ function loadEntries() {
     entriesList.innerHTML = ""
     entries.forEach(entry => {
       allEntries.push(entry)
-      let entryBioToTrim = entry.data
+      let entryBioToTrim = entry.content
       let maxLength = 120
       let trimmedBio = entryBioToTrim.substr(0, maxLength)
       let card =
-      `<div class="col">
-        <div class="card h-100 border-light" style="background-color:black;">
-          <img src="${entry.image}" class="card-img-top" alt="${entry.name}">
+      `<div class="col border border-white" id="card">
+        <div class="card h-100" style="background-color: #000000;">
+          <img src="${entry.image}" class="card-img-top rounded-0" alt="${entry.name}">
           <div class="card-body">
             <h5 class="card-title">${entry.name}<sup>${entry.id}</sup></h5>
-            <p class="card-text"><small>b. ${entry.born}</small></p>
+            <p class="card-text"><small>${entry.source_title}</small></p>
             <p class="card-text">${trimmedBio}...</p>
           </div>
           <div class="card-footer">
@@ -62,7 +62,7 @@ function loadEntries() {
              <div class="col-6 add-to-favorites">
                <i class="bi bi-plus-circle" data-class="add-to-favorites" id=${entry.id}></i>
              </div>
-             <div class="col-6 text-end">
+             <div class="col-6 text-end" style="padding-right: 20px;">
                <i class="bi bi-arrows-fullscreen" data-class="show-button" id=${entry.id}></i>
              </div>
            </div>
@@ -99,7 +99,7 @@ function addToFavorites(entryId) {
     allFavorites.push(favorite)
     var favoritedEntry = allEntries.filter(entry => entry.id == favorite.entryId)
     let favoritesDiv = document.getElementById("favorites")
-    favoritesDiv.innerHTML += `<button type="button" class="btn btn-outline-light fav-btn" data-class="remove-button" id=${favorite.id}><i class="bi bi-x-circle"></i> ${favoritedEntry[0].name}</button>  `
+    favoritesDiv.innerHTML += `<button type="button" class="btn btn-outline-light fav-btn detail-text" data-class="remove-button" id=${favorite.id}><i class="bi bi-x-circle"></i>   ${favoritedEntry[0].name}</button>  `
     algorithmHandler()
     let select = document.getElementById("choose-algorithm")
     select.selectedIndex = 0
@@ -150,9 +150,9 @@ function showEntry(id) {
   `<br>
     <img src="${entryToShow[0].image}" class="col-4 float-start" alt="${entryToShow[0].name}" style="margin-right: 20px;">
       <h5 class="card-title">${entryToShow[0].name}</h5>
-      <p class="card-text"><small>${entryToShow[0].birthplace} — ${entryToShow[0].born}</small></p>
-      <p>${entryToShow[0].data}</p>
-      <a href="${entryToShow[0].source}"><small>by ${entryToShow[0].author}</small></a>
+      <p class="card-text"><small>${entryToShow[0].source_title} | ${entryToShow[0].source_year}</small></p>
+      <p>${entryToShow[0].content}</p>
+      <a href="${entryToShow[0].link}"><small>by ${entryToShow[0].source_author}</small></a>
 `
   showPanel.innerHTML = singleEntry
 }
@@ -212,7 +212,7 @@ function searchHandler() {
     })
     results.forEach(entry => {
       //allEntries.push(entry)
-      let entryBioToTrim = entry.data
+      let entryBioToTrim = entry.content
       let maxLength = 120
       let trimmedBio = entryBioToTrim.substr(0, maxLength)
       let card =
@@ -332,7 +332,7 @@ function renderPoem(array) {
         favoritedEntries = allEntries.filter(entry => entry.id == allFavorites[i].entryId)
         console.log(favoritedEntries);
         authorsDiv.innerHTML +=
-        `<h5>${favoritedEntries[0].name}<sup>${favoritedEntries[0].id}</sup> (b.${favoritedEntries[0].born}),</h5>`
+        `<h5>${favoritedEntries[0].name}<sup>${favoritedEntries[0].id}</sup></h5>`
       }
 
       showPanel.innerHTML = array + printButton
@@ -349,7 +349,7 @@ function algorithmHandler() {
     favoritedEntries.forEach(entry => {
       //console.log(entry.name, entry.id);
       //authors.push(entry)
-      let splitBio = entry.data.split(".")
+      let splitBio = entry.content.split(".")
       // push each sentence into a single array
       for (let i = 0, len = splitBio.length; i < len ; i++) {
         singleArrayOfSentences.push(splitBio[i])

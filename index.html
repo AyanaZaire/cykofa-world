@@ -18,7 +18,8 @@
   <script type="text/javascript" src="index.js"></script>
   <style>
 
-   /* @font-face { font-family: FavoritMono; src: url('ABCFavoritMono-Light.otf'); } */
+   @font-face { font-family: TimesNow-SemiLight; src: url('JHA - TimesNow-SemiLight.otf'); }
+   @font-face { font-family: FavoritStd-Light; src: url('FavoritStd-Light.otf'); }
 
   /* default font-size is 16px - https://bootstrapcreative.com/bootstrap-text-sizes/ */
   html {
@@ -26,8 +27,8 @@
   }
 
    body {
-     background-color:black;
-     font-family: FavoritMono, sans-serif;
+     background-color: #000000;
+     font-family: TimesNow-SemiLight, serif;
      padding: 10px;
      min-height: 400px;
      margin-bottom: 100px;
@@ -36,6 +37,15 @@
 
    small, a {
      color: #917a4f;
+     font-family: FavoritStd-Light, sans-serif;
+   }
+
+   .detail-text {
+     font-family: FavoritStd-Light, sans-serif;
+   }
+
+   h1, h2, h3, h4, h5, h6 {
+     font-family: FavoritStd-Light, sans-serif;
    }
 
   .show-img {
@@ -62,10 +72,23 @@
 
     .navbar {
       background-color: #000000;
+      border-bottom: 0.25px solid #ffffff;
     }
 
     .fav-btn {
       margin: 5px;
+    }
+
+    .border {
+      border: 0.25px solid #dee2e6 !important
+    }
+
+    #card {
+      margin: 0px;
+      padding-top: 0px;
+      padding-bottom: 15px;
+      padding-right: 0px;
+      padding-left: 0px;
     }
 
     /* Fixed show panel */
@@ -75,6 +98,7 @@
       top: 40px;
       bottom: 50px;
       padding-right: 30px;
+      padding-left: 30px;
       padding-top: 30px;
       padding-bottom: 50px;
       display: none;
@@ -85,6 +109,7 @@
       background-color: #555;
       color: white;
       padding: 15px;
+      border-top: 0.25px solid #ffffff;
     }
 
     #loader {
@@ -108,9 +133,14 @@
         height: auto;
       }
 
+      .row {
+        margin-right: -17px;
+      }
+
       .fixed-panel {
         background-color: #000;
         padding-bottom: 150px;
+        margin-left: -20px;
       }
 
       .stop-scrolling {
@@ -159,7 +189,7 @@
   <!-- Fixed navbar -->
   <nav class="navbar fixed-top navbar-expand-md navbar-dark" style="background-color: #000000;">
     <div class="container-fluid">
-      <a class="navbar-brand" id="home">Black Feminist World Database</a>
+      <a class="navbar-brand" id="home">Cykofa Narration Database</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -176,8 +206,8 @@
           </li>
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" type="search" id="search-input" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-light" id="search-button">Search</button>
+          <input class="form-control me-2 detail-text" type="search" id="search-input" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-light detail-text" id="search-button">Search</button>
         </form>
       </div>
     </div>
@@ -187,8 +217,7 @@
 
 <div class="container-fluid">
   <div class="row">
-
-    <div class="col-sm-8">
+    <div class="col-sm-8" style="margin-top: -22px;margin-left: -11px;">
       <br>
         <div class="row row-cols-1 row-cols-md-4 g-4" id="index-panel">
 
@@ -216,14 +245,14 @@
      </div>
      <div class="col-auto">
        <div class="input-group">
-        <select class="form-select" id="choose-algorithm">
+        <select class="form-select detail-text" id="choose-algorithm">
           <option value="choose" selected id="choose">Choose An Algorithm</option>
           <option value="naive" id="naive">Naïve Shuffle </option>
           <option value="quick" id="quick">Quick Sort</option>
           <option value="fisher" id="fisher">Fisher–Yates Shuffle</option>
         </select>
         <div class="input-group-append">
-          <button class="btn btn-outline-light" type="button" id="generate-poem">Generate Narrative</button>
+          <button class="btn btn-outline-light detail-text" type="button" id="generate-poem">Generate Narrative</button>
         </div>
       </div>
      </div>
